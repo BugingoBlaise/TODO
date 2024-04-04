@@ -1,0 +1,31 @@
+<zk>
+    <window apply="org.zkoss.bind.BindComposer"
+            viewModel="@id('vm')@init('org.blaisesolutions.viewModels.PersonViewModel')" validationMessages="@id('vmsgs')" width="600px" vflex="1">
+        <vbox>
+                    <hbox>
+                        <label value="Name: "/>
+                        <textbox value="@bind(vm.username)"/>
+                    </hbox>
+                    <hbox>
+                           <label value="Age: "/>
+                           <textbox value="@bind(vm.age)"/>
+                    </hbox>
+                    <button label="Save" onClick="@command('addPerson')"/>
+                </vbox>
+        <listbox model="@load(vm.personList)" sclass="my-data"
+                 emptyMessage="No users found">
+            <template name="model">
+                <listitem sclass="listbox-item" style="display:flex;flex-direction:column">
+                    <listcell class="username-cell">
+                        <label value="@init(each.username)"/>
+                    </listcell>
+                    <listcell>
+                        <button label="Delete" onClick="@command('deletePerson', person=self.parent.parent.value)"/>
+                    </listcell>
+                </listitem>
+            </template>
+        </listbox>
+
+
+    </window>
+</zk>

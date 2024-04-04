@@ -1,0 +1,111 @@
+<zk>
+    <window
+            title="USER DATA" border="normal"
+            apply="org.zkoss.bind.BindComposer"
+            viewModel="@id('vm')@init('org.blaisesolutions.viewModels.UserDetailsViewModel')"
+    >
+        <div sclass="breadcrumb">
+            <vlayout>
+                <grid width="100%">
+                    <columns>
+                        <column align="right" hflex="min"/>
+                        <column/>
+                        <column align="right" hflex="min"/>
+                        <column/>
+                    </columns>
+                    <rows>
+                        <row>
+                            <cell sclass="row-title">Name</cell>
+                            <cell><label value="@load(vm.user.fullName)"/></cell>
+                            <cell sclass="row-title">Email</cell>
+                            <cell><label value="@load(vm.user.email)"/></cell>
+                        </row>
+                        <row>
+                            <cell sclass="row-title">Account</cell>
+                            <cell><label value="@load(vm.user.account)"/></cell>
+                            <cell sclass="row-title">Country</cell>
+                            <cell><label value="@load(vm.user.country)"/></cell>
+                        </row>
+                        <row>
+                            <cell sclass="row-title">Birthday</cell>
+                            <cell><label value="@load(vm.user.birthday)"/></cell>
+                            <cell sclass="row-title">Bio</cell>
+                            <cell><label value="@load(vm.user.bio)"/></cell>
+                        </row>
+                    </rows>
+                </grid>
+            </vlayout>
+
+            <vlayout>
+                <grid width="100%">
+                    <columns>
+                        <column align="right" hflex="min" width="50%"/>
+                        <column/>
+                    </columns>
+                    <rows>
+                        <row>
+                            <cell>
+                                <listbox
+                                        id="todoList"
+                                        model="@load(vm.userTodos)"
+                                        emptyMessage="This User does not have todo"
+                                >
+                                    <listhead>
+                                        <listheader label="Subject"/>
+                                        <listheader label="Priority"/>
+                                    </listhead>
+                                    <template name="model">
+                                        <listitem sclass="">
+                                            <listcell label="@init(each.subject)"/>
+                                            <listcell label="@init(each.priority)"/>
+                                        </listitem>
+                                    </template>
+                                </listbox>
+                            </cell>
+                            <cell>
+                                <rowlayout >
+                                    <rowchildren colspan="12">
+                                        <vlayout>
+                                            <grid>
+                                                <columns>
+                                                    <column align="right" hflex="min"/>
+                                                    <column/>
+                                                </columns>
+                                                <rows>
+                                                    <row>
+                                                        <cell colspan="2">
+                                                            <div sclass="breadcrumb" style="float:left">
+                                                                Assign Todo
+                                                            </div>
+                                                        </cell>
+                                                    </row>
+                                                    <row>
+                                                        <cell sclass="row-title">Select Todo :</cell>
+                                                        <cell>
+                                                            <combobox id="cmbColor" width="150px"
+                                                                      model="@load(vm.todoList)" selectedItem="@bind(vm.selectedTodo)">
+                                                                <template name="model">
+                                                                    <comboitem label="@load(each.subject)"/>
+                                                                </template>
+                                                            </combobox>
+                                                        </cell>
+                                                    </row>
+                                                    <row>
+                                                        <cell colspan="2" >
+                                                            <button onClick="@command('addTodo')" type="button" id="addTodo" >Assign Todo</button>
+                                                        </cell>
+                                                    </row>
+                                                </rows>
+                                            </grid>
+                                        </vlayout>
+                                    </rowchildren>
+                                </rowlayout>
+
+                            </cell>
+                        </row>
+                    </rows>
+                </grid>
+            </vlayout>
+        </div>
+    </window>
+</zk>

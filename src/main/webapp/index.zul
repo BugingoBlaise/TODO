@@ -1,0 +1,14 @@
+<?link rel="stylesheet" type="text/css" href="/style.css"?>
+<!-- protect page by the authentication init  -->
+
+<?init class="org.blaisesolutions.controller.AuthenticationInit"?>
+
+<zk>
+	<div height="100%">
+		<template name="layout" src="/template.zul"/>
+		<apply template="layout"/>
+		<template name="center">
+			<apply id="content" templateURI="/home.zul"  dynamicValue="true"/>
+		</template>
+	</div>
+</zk>

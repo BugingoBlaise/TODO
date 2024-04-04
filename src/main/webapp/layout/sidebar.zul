@@ -1,0 +1,9 @@
+<grid hflex="1" vflex="1" sclass="sidebar"
+	  id="sidebar"
+	  apply="org.blaisesolutions.controller.SidebarAjaxbasedController">
+	<columns>
+		<column width="36px"/>
+		<column/>
+	</columns>
+	<rows/>
+</grid>

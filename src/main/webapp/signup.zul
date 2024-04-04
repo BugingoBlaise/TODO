@@ -1,0 +1,74 @@
+<?link rel="stylesheet" type="text/css" href="/style.css"?>
+<zk>
+    <div height="100%">
+        <template name="layout" src="/template.zul"/>
+        <apply template="layout"/>
+        <template name="center">
+            <hbox vflex="1" hflex="1" align="center"
+                  pack="center" spacing="20px">
+                <vlayout>
+                    <window apply="org.zkoss.bind.BindComposer"
+                            viewModel="@id('vm')@init('org.blaisesolutions.viewModels.AddUserViewModel')"
+                            title="Sign Up Page" border="normal" hflex="min">
+                        <vbox hflex="min" align="center">
+                            <grid hflex="min">
+                                <columns>
+                                    <column hflex="min" align="right"/>
+                                    <column/>
+                                </columns>
+                                <rows>
+                                    <row>
+                                        Names:
+                                        <textbox value="@bind(vm.user.fullName)" constraint="no empty" width="200px"/>
+                                    </row>
+                                    <row>
+                                        Email/Username :
+                                        <textbox value="@bind(vm.user.email)"   constraint="no empty" width="200px"/>
+                                    </row>
+                                    <row>
+                                        Birth Date :
+                                        <datebox value="@bind(vm.user.birthday)"  constraint="no future" width="200px"/>
+                                    </row>
+                                    <row sclass="row-title">
+                                        Country:
+                                        <listbox model="@load(vm.countryList)" selectedItem="@bind(vm.user.country)" mold="select" width="200px">
+                                            <template name="model">
+                                                <listitem label="@load(each)" />
+                                            </template>
+                                        </listbox>
+                                    </row>
+                                    <row>
+                                        Bio :
+                                        <textbox value="@bind(vm.user.bio)" constraint="no empty" width="200px"/>
+                                    </row>
+
+                                    <row>
+                                        Password :
+                                        <textbox value="@bind(vm.user.password)"   constraint="no empty" type="password"
+                                                 width="200px"/>
+
+                                    </row>
+                                    <row>
+                                        Confirm Password :
+                                        <textbox value="@bind(vm.confirmPassword)"  constraint="no empty" type="password"
+                                                 width="200px"/>
+                                    </row>
+                                </rows>
+                            </grid>
+                            <grid hflex="min" style="border-style: none">
+                                <rows style="align-content: center">
+                                    <row>
+                                        <button id="signin" label="Login" onClick="@command('login')"/>
+                                        <button id="signingUp" label="Sign Up" onClick="@command('signup')"/>
+                                    </row>
+                                </rows>
+                            </grid>
+                        </vbox>
+                    </window>
+<!--                    (use account='zkoss' and password='1234' to login)-->
+                </vlayout>
+            </hbox>
+        </template>
+<!--        </template>-->
+    </div>
+</zk>

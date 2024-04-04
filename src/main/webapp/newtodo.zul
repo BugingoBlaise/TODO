@@ -1,0 +1,65 @@
+<zk>
+    <window>
+         <caption sclass="fn-caption"
+                  label="My Todos"/>
+        <vlayout>
+            <grid  width="600px"
+
+            >
+                <columns>
+                    <column align="center" hflex="min"/>
+                    <column/>
+                </columns>
+                <rows>
+                    <row>
+                        <cell sclass="row-title">Subject</cell>
+                        <cell>
+                            <textbox width="200px"
+                                     constraint="no empty"
+                                     value="RUNNIG"
+                            />
+                        </cell>
+                    </row>
+                    <row>
+                        <cell sclass="row-title">Subject</cell>
+                        <cell>
+                            <radiogroup
+                                        >
+                                <template name="">
+                                    <radio label="HIGH"/>
+                                </template>
+                            </radiogroup>
+                        </cell>
+                    </row>
+                    <row>
+                        <cell sclass="row-title">Description :</cell>
+                        <cell>
+                            <textbox value="RUN 15KM"
+                                    multiline="true" hflex="1" height="100px" />
+                        </cell>
+                    </row>
+                </rows>
+
+            </grid>
+            <hlayout>
+                <button  label="Save"/>
+                <button  label="Cancel" style="background-color: red"/>
+            </hlayout>
+        </vlayout>
+
+        <listbox   id="todoList">
+            <listhead>
+                <listheader label="Subject" />
+                <listheader label="Priority"/>
+                <listheader label="date"/>
+            </listhead>
+            <template name="model">
+                <listitem>
+                    <listcell label="RUN"></listcell>
+                    <listcell label="HIGH"></listcell>
+                    <listcell label="12/23/2010"></listcell>
+                </listitem>
+            </template>
+        </listbox>
+    </window>
+</zk>
