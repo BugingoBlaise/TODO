@@ -1,9 +1,7 @@
 <zk>
-
-    <window title="Search" border="normal"
+    <groupbox title="Search"
             apply="org.zkoss.bind.BindComposer"
-            viewModel="@id('vm')@init('org.blaisesolutions.viewModels.UsersViewModel')"
-    >
+            viewModel="@id('vm')@init('org.blaisesolutions.viewModels.UsersViewModel')">
         <separator bar="true" spacing="20px"  />
         <hbox>
             keyword:
@@ -32,5 +30,5 @@
                 </listitem>
             </template>
         </listbox>
-    </window>
+    </groupbox>
 </zk>

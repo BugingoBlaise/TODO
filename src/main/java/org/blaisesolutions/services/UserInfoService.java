@@ -29,12 +29,5 @@ public interface UserInfoService {
 	public List<User> findAll();
 
 	List<User> searchUserByName(String keyword);
- 	/*
-	public void update(User user);
 
-	public User findById(int id);
-	public User findByFullName(String subject);
-	public User findByEmail(String email);
-
- */
 }

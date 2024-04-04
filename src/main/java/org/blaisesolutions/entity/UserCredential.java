@@ -10,18 +10,21 @@ public class UserCredential implements Serializable {
 
     String account;
     String name;
+    String ROLE;
 
     Set<String> roles = new HashSet<String>();
 
-    public UserCredential(String account, String name) {
+    public UserCredential(String account, String name,String ROLE) {
         this.account = account;
         this.name = name;
+        this.ROLE=ROLE;
     }
 
     public UserCredential() {
         this.account = "anonymous";
         this.name = "Anonymous";
         roles.add("anonymous");
+//        roles.add("USER");
     }
 
     public boolean isAnonymous() {
@@ -50,5 +53,13 @@ public class UserCredential implements Serializable {
 
     public void addRole(String role){
         roles.add(role);
+    }
+
+    public String getROLE() {
+        return ROLE;
+    }
+
+    public void setROLE(String ROLE) {
+        this.ROLE = ROLE;
     }
 }

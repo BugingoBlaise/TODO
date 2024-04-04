@@ -1,4 +1,4 @@
-package org.blaisesolutions;
+package org.blaisesolutions.viewModels;
 
 import org.blaisesolutions.entity.Log;
 import org.blaisesolutions.services.MyService;

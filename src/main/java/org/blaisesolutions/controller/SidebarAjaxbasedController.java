@@ -29,11 +29,10 @@ public class SidebarAjaxbasedController extends SelectorComposer<Component>{
 	private static final long serialVersionUID = 1L;
 	@Wire
 	Grid sidebar;
-	//wire service
+
 	@WireVariable("sidebarPageConfigAjaxbased")
 	SidebarPageConfig pageConfig;
 
-//	SidebarPageConfig pageConfig = new SidebarPageConfigAjaxBasedImpl();
 	
 	@Override
 	public void doAfterCompose(Component comp) throws Exception{

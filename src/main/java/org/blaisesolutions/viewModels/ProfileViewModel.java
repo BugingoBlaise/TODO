@@ -52,6 +52,7 @@ public class ProfileViewModel implements Serializable {
         user.setBirthday(user.getBirthday());
         user.setCountry(user.getCountry());
         user.setBio(user.getBio());
+        user.setRole("USER");
         // Perform signup logic
         String result = userInfoService.create(user);
         // Show success or error message

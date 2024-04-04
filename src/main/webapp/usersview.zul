@@ -2,7 +2,7 @@
     <groupbox
             title="USER DATA"
             apply="org.zkoss.bind.BindComposer"
-            viewModel="@id('vm')@init('org.blaisesolutions.viewModels.UserDetailsViewModel')"
+            viewModel="@id('vm')@init('org.blaisesolutions.viewModels.UsersPageViewModel')"
     >
         <div sclass="breadcrumb">
             <vlayout>
@@ -61,46 +61,6 @@
                                         </listitem>
                                     </template>
                                 </listbox>
-                            </cell>
-                            <cell>
-                                <rowlayout >
-                                    <rowchildren colspan="12">
-                                        <vlayout>
-                                            <grid>
-                                                <columns>
-                                                    <column align="right" hflex="min"/>
-                                                    <column/>
-                                                </columns>
-                                                <rows>
-                                                    <row>
-                                                        <cell colspan="2">
-                                                            <div sclass="breadcrumb" style="float:left">
-                                                                Assign Todo
-                                                            </div>
-                                                        </cell>
-                                                    </row>
-                                                    <row>
-                                                        <cell sclass="row-title">Select Todo :</cell>
-                                                        <cell>
-                                                            <combobox id="cmbColor" width="150px"
-                                                                      model="@load(vm.todoList)" selectedItem="@bind(vm.selectedTodo)">
-                                                                <template name="model">
-                                                                    <comboitem label="@load(each.subject)"/>
-                                                                </template>
-                                                            </combobox>
-                                                        </cell>
-                                                    </row>
-                                                    <row>
-                                                        <cell colspan="2" >
-                                                            <button onClick="@command('addTodo')" type="button" id="addTodo" >Assign Todo</button>
-                                                        </cell>
-                                                    </row>
-                                                </rows>
-                                            </grid>
-                                        </vlayout>
-                                    </rowchildren>
-                                </rowlayout>
-
                             </cell>
                         </row>
                     </rows>

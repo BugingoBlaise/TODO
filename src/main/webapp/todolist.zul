@@ -1,7 +1,7 @@
 <?link rel="stylesheet" type="text/css" href="/style.css"?>
 <!--<link rel="stylesheet" type="text/css" href="/style.css"/>-->
-<window	viewModel="@id('vm') @init('org.blaisesolutions.viewModels.TodoListViewModel')"
-           border="normal" hflex="1" vflex="1" contentStyle="overflow:auto">
+<groupbox viewModel="@id('vm') @init('org.blaisesolutions.viewModels.TodoListViewModel')"
+           hflex="1" vflex="1" contentStyle="overflow:auto">
 
     <caption src="/imgs/todo.png" sclass="fn-caption" label="Todo List (MVVM)"/>
     <borderlayout>
@@ -33,7 +33,7 @@
                 </listbox>
             </vlayout>
         </center>
-        <east visible="@bind(not empty vm.selectedTodo)" width="200px" border="none" collapsible="false" splittable="true" minsize="200" autoscroll="true">
+        <east visible="@bind(not empty vm.selectedTodo)" width="400px" border="none" collapsible="false" splittable="true" minsize="200" autoscroll="true">
             <vlayout
                     form="@id('fx') @load(vm.selectedTodo) @save(vm.newTodo, before='updateTodo') @validator(vm.todoValidator)">
                 <hbox align="center"  hflex="1">
@@ -75,4 +75,4 @@
             </vlayout>
         </east>
     </borderlayout>
-</window>
+</groupbox>

@@ -47,15 +47,12 @@
     font-size: medium;
     color: #636363;
 }
-
 .complete-todo .z-label{
     text-decoration: line-through;
 }
-
 .warn{
     color:red;
 }
-
 .demo-main a,.demo-main a:VISITED{
     color:#636363;
     text-decoration: underline;

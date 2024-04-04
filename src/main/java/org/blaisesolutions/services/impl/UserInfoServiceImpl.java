@@ -29,7 +29,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
 
-//@Transactional
+
 @Service("userInfoService")
 @Scope(value = "singleton", proxyMode = ScopedProxyMode.TARGET_CLASS)
 public class UserInfoServiceImpl implements UserInfoService, Serializable {
@@ -42,9 +42,13 @@ public class UserInfoServiceImpl implements UserInfoService, Serializable {
     @Override
     public User findUser(String account) {
         Optional<User> userOptional = userDao.findUserByEmail(account);
+        if(userOptional.isPresent()){
+            return userOptional.orElse(null);
+        }else {
+            throw new IllegalArgumentException("User no found");
+        }
 
-        return userOptional.orElse(null);
-    }
+            }
 
     @Override
     public String updateUser(User user) {
@@ -52,8 +56,7 @@ public class UserInfoServiceImpl implements UserInfoService, Serializable {
         if (!existingUser.isPresent()) {
             throw new IllegalArgumentException("User not found");
         } else {
-            // Update the user entity with the new list of todos
-//            existingUser.get().setTodo(user.getTodo());
+
             userDao.update(existingUser.get());
             return "Assigned Successfully";
         }
@@ -74,10 +77,6 @@ public class UserInfoServiceImpl implements UserInfoService, Serializable {
         }else{
             return userDao.save(user);
         }
-        // Encode password before saving
-
-        // Save the user
-
     }
 
     @Override

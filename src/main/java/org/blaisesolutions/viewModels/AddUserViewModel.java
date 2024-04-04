@@ -58,6 +58,7 @@ public class AddUserViewModel implements Serializable {
         user.setCountry(user.getCountry());
         user.setBio(user.getBio());
         user.setPassword(user.getPassword());
+        user.setRole("USER");
 
 
         // Perform signup logic

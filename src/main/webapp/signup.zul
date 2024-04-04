@@ -5,11 +5,11 @@
         <apply template="layout"/>
         <template name="center">
             <hbox vflex="1" hflex="1" align="center"
-                  pack="center" spacing="20px">
+                  pack="center" spacing="10px">
                 <vlayout>
-                    <window apply="org.zkoss.bind.BindComposer"
+                    <groupbox apply="org.zkoss.bind.BindComposer"
                             viewModel="@id('vm')@init('org.blaisesolutions.viewModels.AddUserViewModel')"
-                            title="Sign Up Page" border="normal" hflex="min">
+                           >
                         <vbox hflex="min" align="center">
                             <grid hflex="min">
                                 <columns>
@@ -64,7 +64,7 @@
                                 </rows>
                             </grid>
                         </vbox>
-                    </window>
+                    </groupbox>
 <!--                    (use account='zkoss' and password='1234' to login)-->
                 </vlayout>
             </hbox>

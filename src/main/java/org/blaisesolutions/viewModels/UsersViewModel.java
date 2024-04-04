@@ -54,7 +54,6 @@ public class UsersViewModel {
     }
 
 
-
     public void applyUserPage(String uri) {
         Apply apply = (Apply) Selectors.find("::shadow#content")
                 .iterator().next();
@@ -72,7 +71,6 @@ public class UsersViewModel {
         Session sess = Sessions.getCurrent();
         sess.setAttribute("selectedUser", this.selectedTodo);
         this.applyUserPage("/user-details.zul");
-
     }
 
 

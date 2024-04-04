@@ -8,7 +8,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 @org.springframework.context.annotation.Configuration
 @ComponentScan(basePackages = "org.blaisesolutions")
-//@EnableWebSecurity
 public class Configuration {
     @Bean
     public PasswordEncoder passwordEncoder() {

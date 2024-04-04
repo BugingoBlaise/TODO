@@ -2,8 +2,8 @@
 	An example to use property binding instead of form binding.
  -->
 <?link rel="stylesheet" type="text/css" href="/style.css"?>
-<window viewModel="@id('vm') @init('org.blaisesolutions.viewModels.ProfileViewModel')"
-        border="normal" hflex="1" vflex="1" contentStyle="overflow:auto">
+<groupbox viewModel="@id('vm') @init('org.blaisesolutions.viewModels.ProfileViewModel')"
+         hflex="1" vflex="1" contentStyle="overflow:auto">
     <caption src="/imgs/profile.png" sclass="fn-caption" label="Profile"/>
     <vlayout>
         <grid width="400px">
@@ -50,4 +50,4 @@
             <button onClick="@command('reload')" label="Reload"/>
         </hlayout>
     </vlayout>
-</window>
+</groupbox>
