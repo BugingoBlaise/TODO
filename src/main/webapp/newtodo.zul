@@ -3,9 +3,7 @@
          <caption sclass="fn-caption"
                   label="My Todos"/>
         <vlayout>
-            <grid  width="600px"
-
-            >
+            <grid  width="600px">
                 <columns>
                     <column align="center" hflex="min"/>
                     <column/>
@@ -23,8 +21,7 @@
                     <row>
                         <cell sclass="row-title">Subject</cell>
                         <cell>
-                            <radiogroup
-                                        >
+                            <radiogroup>
                                 <template name="">
                                     <radio label="HIGH"/>
                                 </template>

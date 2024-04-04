@@ -27,8 +27,7 @@ public class AuthenticationInit implements Initiator {
 	//services
 	@WireVariable
 	AuthenticationService authService;
-//	= new AuthenticationServiceImpl();
-	
+
 	public void doInit(Page page, Map<String, Object> args) throws Exception {
 		Selectors.wireVariables(page, this, Selectors.newVariableResolvers(getClass(), null));
 		UserCredential cre = authService.getUserCredential();

