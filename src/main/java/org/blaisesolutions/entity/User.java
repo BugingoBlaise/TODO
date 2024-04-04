@@ -29,7 +29,7 @@ import java.util.List;
 @Getter
 @Setter
 @Entity
-@Table(name = "my_users")
+@Table(name = "my_users_table")
 public class User implements Serializable, Cloneable {
     private static final long serialVersionUID = 1L;
     @Id

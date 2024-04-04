@@ -26,6 +26,7 @@ import java.util.Objects;
 @Getter
 @Setter
 @Entity
+@Table(name = "my_todo_table")
 public class Todo implements Serializable, Cloneable {
     private static final long serialVersionUID = 1L;
     private boolean complete;
