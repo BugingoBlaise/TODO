@@ -29,12 +29,13 @@ import java.util.Objects;
 @Table(name = "my_todo_table")
 public class Todo implements Serializable, Cloneable {
     private static final long serialVersionUID = 1L;
-    private boolean complete;
+    private boolean complete=false;
     private String subject;
     @Enumerated(EnumType.STRING)
     private Priority priority;
     private Date date;
     private String description;
+//    private boolean isdeleted = false;
 
 
     //    @OneToMany(mappedBy = "todo",fetch = FetchType.EAGER)
@@ -55,7 +56,7 @@ public class Todo implements Serializable, Cloneable {
         this.priority = Priority.LOW;
     }
 
-    public Todo(boolean complete, String subject, Priority priority, Date date, String description, Integer id,User user) {
+    public Todo(boolean complete, String subject, Priority priority, Date date, String description, Integer id,User user ) {
         this.complete = complete;
         this.subject = subject;
         this.priority = priority;
@@ -63,6 +64,7 @@ public class Todo implements Serializable, Cloneable {
         this.description = description;
         this.id = id;
         this.user=user;
+
     }
 
 }

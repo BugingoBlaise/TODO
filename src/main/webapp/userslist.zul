@@ -1,26 +1,38 @@
+<?link rel="stylesheet" type="text/css" href="/style.css"?>
 <zk>
     <groupbox title="Search"
-            apply="org.zkoss.bind.BindComposer"
-            viewModel="@id('vm')@init('org.blaisesolutions.viewModels.UsersViewModel')">
-        <separator bar="true" spacing="20px"  />
-        <hbox>
-            keyword:
-            <textbox id="keywordBox" value="@save(vm.keyword)"/>
-            <button id="searchButton" label="search" image="/img/search.png"
-                    onClick="@command('search')"
-            />
-        </hbox>
-        <listbox id="userList" rows="@bind(vm.users.size())" model="@load(vm.users)" emptyMessage="No users found in the result"
+              apply="org.zkoss.bind.BindComposer"
+              viewModel="@id('vm')@init('org.blaisesolutions.viewModels.UsersViewModel')">
+        <separator bar="true" spacing="20px"/>
+        <hlayout style="display: flex; flex-direction: row; justify-content: space-between;">
+
+                <div>
+                    <!-- Aligning the "Add New User" button to the left -->
+                    <button label="Add New User" iconSclass="z-icon-user-add"  onClick="@command('openProfilePage')"/>
+                </div>
+
+                <div>
+                    Keyword:
+                    <textbox id="keywordBox" value="@save(vm.keyword)"/>
+                    <button id="searchButton" label="Search" image="/img/search.png"
+                            onClick="@command('search')"
+                    />
+                </div>
+
+
+        </hlayout>
+        <listbox id="userList" rows="@bind(vm.users.size())" model="@load(vm.users)"
+                 emptyMessage="No users found in the result"
                  selectedItem="@save(vm.selectedUser)"
         >
             <listhead>
                 <listheader label="Name"/>
-                <listheader label="Email" />
-                <listheader label="Account" />
+                <listheader label="Email"/>
+                <listheader label="Account"/>
                 <listheader label="Info"/>
             </listhead>
             <template name="model">
-                <listitem >
+                <listitem>
                     <listcell label="@init(each.fullName)"></listcell>
                     <listcell label="@init(each.email)"></listcell>
                     <listcell label="@init(each.account)"></listcell>

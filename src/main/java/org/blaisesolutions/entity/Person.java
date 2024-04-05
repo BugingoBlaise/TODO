@@ -25,4 +25,6 @@ public class Person {
 
     private String imagePath; // St
     private boolean deleted = false;
+
+
 }

@@ -1,9 +1,8 @@
 <?link rel="stylesheet" type="text/css" href="/style.css"?>
-<!--<link rel="stylesheet" type="text/css" href="/style.css"/>-->
 <groupbox viewModel="@id('vm') @init('org.blaisesolutions.viewModels.TodoListViewModel')"
            hflex="1" vflex="1" contentStyle="overflow:auto">
 
-    <caption src="/imgs/todo.png" sclass="fn-caption" label="Todo List (MVVM)"/>
+    <caption src="/imgs/todo.png" sclass="fn-caption" label="Todo List"/>
     <borderlayout>
         <center autoscroll="true" border="none">
             <vlayout hflex="1" vflex="1">

@@ -28,6 +28,8 @@ public class UsersViewModel {
     private List<User> users = new ListModelList<>();
 
     private User selectedUser;
+    private User newUser;
+
 
     @WireVariable
     private TodoListService todoListService;
@@ -53,7 +55,16 @@ public class UsersViewModel {
         users.addAll(userInfoService.searchUserByName(keyword));
     }
 
-
+    @Command("openProfilePage")
+    public void openProfilePage() {
+        applyProfileView("/profile.zul");
+    }
+    public void applyProfileView(String uri) {
+        Apply apply = (Apply) Selectors.find("::shadow#content").iterator().next();
+        apply.setTemplate(null);
+        apply.setTemplateURI(uri);
+        apply.recreate();
+    }
     public void applyUserPage(String uri) {
         Apply apply = (Apply) Selectors.find("::shadow#content")
                 .iterator().next();
@@ -121,6 +132,12 @@ public class UsersViewModel {
     public User getSelectedUser() {
         return selectedUser;
     }
+    public User getNewUser() {
+        return newUser;
+    }
 
+    public void setNewUser(User newUser) {
+        this.newUser = newUser;
+    }
 
 }

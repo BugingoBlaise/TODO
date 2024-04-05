@@ -4,6 +4,11 @@
 <?link rel="stylesheet" type="text/css" href="/style.css"?>
 <groupbox viewModel="@id('vm') @init('org.blaisesolutions.viewModels.ProfileViewModel')"
          hflex="1" vflex="1" contentStyle="overflow:auto">
+    <hlayout style="display: flex; flex-direction: row; justify-content: flex-end;">
+        <div>
+            <button label="Back to UsersList" iconSclass="z-icon-user-add"  onClick="@command('openUsersview')"/>
+        </div>
+    </hlayout>
     <caption src="/imgs/profile.png" sclass="fn-caption" label="Profile"/>
     <vlayout>
         <grid width="400px">
@@ -12,10 +17,6 @@
                 <column/>
             </columns>
             <rows>
-<!--                <row>-->
-<!--                    <cell sclass="row-title">Account :</cell>-->
-<!--                    <cell><label value="@load(vm.user.account)"/></cell>-->
-<!--                </row>-->
                 <row>
                     <cell sclass="row-title">Full Name :</cell>
                     <cell><textbox value="@bind(vm.user.fullName)" constraint="no empty: Plean enter your full name" width="200px"/></cell>

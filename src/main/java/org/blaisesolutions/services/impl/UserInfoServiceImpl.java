@@ -42,13 +42,8 @@ public class UserInfoServiceImpl implements UserInfoService, Serializable {
     @Override
     public User findUser(String account) {
         Optional<User> userOptional = userDao.findUserByEmail(account);
-        if(userOptional.isPresent()){
             return userOptional.orElse(null);
-        }else {
-            throw new IllegalArgumentException("User no found");
-        }
-
-            }
+    }
 
     @Override
     public String updateUser(User user) {
@@ -65,16 +60,12 @@ public class UserInfoServiceImpl implements UserInfoService, Serializable {
 
     @Override
     public String create(User user) {
-
         // Check if user already exists
         User existingUser = findUser(user.getEmail());
         if (existingUser != null) {
             throw new IllegalArgumentException("User already exists");
-        }
-        if(user.getPassword()!=null){
-            user.setPassword(passwordEncoder.encode(user.getPassword()));
-            return userDao.save(user);
         }else{
+            user.setPassword(passwordEncoder.encode(user.getPassword()));
             return userDao.save(user);
         }
     }
@@ -101,7 +92,6 @@ public class UserInfoServiceImpl implements UserInfoService, Serializable {
                 }
             }
         }
-
         return result;
 
     }

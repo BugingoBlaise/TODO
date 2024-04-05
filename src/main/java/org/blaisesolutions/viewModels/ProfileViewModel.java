@@ -14,12 +14,15 @@ import org.blaisesolutions.entity.User;
 import org.blaisesolutions.services.CommonInfoService;
 import org.blaisesolutions.services.UserInfoService;
 import org.zkoss.bind.annotation.Command;
+import org.zkoss.bind.annotation.ExecutionParam;
 import org.zkoss.bind.annotation.Init;
 import org.zkoss.bind.annotation.NotifyChange;
 import org.zkoss.zk.ui.Executions;
+import org.zkoss.zk.ui.select.Selectors;
 import org.zkoss.zk.ui.select.annotation.VariableResolver;
 import org.zkoss.zk.ui.select.annotation.WireVariable;
 import org.zkoss.zk.ui.util.Clients;
+import org.zkoss.zuti.zul.Apply;
 
 import java.io.Serializable;
 import java.util.List;
@@ -53,6 +56,7 @@ public class ProfileViewModel implements Serializable {
         user.setCountry(user.getCountry());
         user.setBio(user.getBio());
         user.setRole("USER");
+        user.setPassword("12345");
         // Perform signup logic
         String result = userInfoService.create(user);
         // Show success or error message
@@ -61,7 +65,18 @@ public class ProfileViewModel implements Serializable {
     @NotifyChange("user")
     @Command
     public void reload() {
-        user = null;
+//        user = null;
+    }
+    @org.zkoss.zk.ui.annotation.Command("openUsersview")
+    public void openUsersview() {
+        applyUserview("/userslist.zul");
+    }
+
+    public void applyUserview(String uri) {
+        Apply apply = (Apply) Selectors.find("::shadow#content").iterator().next();
+        apply.setTemplate(null);
+        apply.setTemplateURI(uri);
+        apply.recreate();
     }
     public User getUser() {
         return user;

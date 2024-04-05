@@ -62,3 +62,8 @@
 .todo-box {
     padding-right:4px;
 }
+.bar{
+    display:flex;
+    flex-direction:row;
+    justify-content:space-between;
+}

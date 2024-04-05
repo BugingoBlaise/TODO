@@ -12,6 +12,7 @@ package org.blaisesolutions.services.impl;
 
 import lombok.extern.slf4j.Slf4j;
 import org.blaisesolutions.dao.TodoDao;
+import org.blaisesolutions.entity.Person;
 import org.blaisesolutions.entity.Todo;
 import org.blaisesolutions.entity.User;
 import org.blaisesolutions.services.TodoListService;
@@ -81,111 +82,18 @@ public class TodoListServiceImpl implements TodoListService {
     public List<Todo> findByUser(User user) {
         return this.todoDao.findByUser(user);
     }
-/*
-    public void deleteTodoById(Integer id) {
-		try {
-			todoDao.deleteTodoById(id);
-		} catch (DataAccessException ex) {
-			// Log the exception and perform appropriate error handling such as
-			// returning a failure message or rethrowing the exception.
-			throw ex;
-		}
-	}
-
- */
-//	public void updateTodo(Todo)
-
-
-
-
-	/*
-        static int todoId = 0;
-        static List<Todo> todoList = new ArrayList<Todo>();
-        static{
-            todoList.add(new Todo(todoId++,"Buy some milk", Priority.LOW,null,null));
-            todoList.add(new Todo(todoId++,"Dennis' birthday gift",Priority.MEDIUM,dayAfter(10),null));
-            todoList.add(new Todo(todoId++,"Pay credit-card bill",Priority.HIGH,dayAfter(5),"$1,000"));
+    @Override
+    public String softDelete(Todo todo) {
+        try{
+            todoDao.softDelete(todo);
+            return "Deleted successfully";
+        }catch (Exception ex){
+            log.error("Error deleting todo: {}", ex.getMessage());
+            return "Failed to delete todo: " + ex.getMessage();
         }
-
-
-        private static Date dayAfter(int d){
-            Calendar c = Calendar.getInstance();
-            c.add(Calendar.DATE, d);
-            return c.getTime();
-        }
-
-        /** synchronized is just because we use static userList in this demo to prevent concurrent access **/
-	/*public  List<Todo>getTodoList() {
-		List<Todo> list = new ArrayList<Todo>();
-		for(Todo todo:todoList){
-			list.add(Todo.clone(todo));
-		}
-		return todoDao.queryAll();
-	}
-
-	 */
-
+    }
 }
 
 
 
-
-	/** synchronized is just because we use static userList in this demo to prevent concurrent access **/
-	/*public synchronized Todo getTodo(Integer id){
-		int size = todoList.size();
-		for(int i=0;i<size;i++){
-			Todo t = todoList.get(i);
-			if(t.getId().equals(id)){
-				return Todo.clone(t);
-			}
-		}
-		return null;
-	}
-
-	 */
-
-	/** synchronized is just because we use static userList in this demo to prevent concurrent access **/
-	/*public synchronized Todo saveTodo(Todo todo){
-		todo = Todo.clone(todo);
-		todo.setId(todoId++);
-		todoList.add(todo);
-		return todo;
-	}
-
-	 */
-
-	/** synchronized is just because we use static userList in this demo to prevent concurrent access **/
-	 /*public synchronized Todo updateTodo(Todo todo){
-		if(todo.getId()==null){
-			throw new IllegalArgumentException("cann't save a null-id todo, save it first");
-		}else{
-			todo = Todo.clone(todo);
-			int size = todoList.size();
-			for(int i=0;i<size;i++){
-				Todo t = todoList.get(i);
-				if(t.getId().equals(todo.getId())){
-					todoList.set(i, todo);
-					return todo;
-				}
-			}
-			throw new RuntimeException("Todo not found "+todo.getId());
-		}
-	}
-
-
-
-	/** synchronized is just because we use static userList in this demo to prevent concurrent access **/
-	/*public synchronized void deleteTodo(Todo todo){
-		if(todo.getId()!=null){
-			int size = todoList.size();
-			for(int i=0;i<size;i++){
-				Todo t = todoList.get(i);
-				if(t.getId().equals(todo.getId())){
-					todoList.remove(i);
-					return;
-				}
-			}
-		}
-	}
-	*/
 

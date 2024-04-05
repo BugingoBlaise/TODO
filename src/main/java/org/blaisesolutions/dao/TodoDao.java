@@ -2,6 +2,7 @@ package org.blaisesolutions.dao;
 
 
 import lombok.extern.slf4j.Slf4j;
+import org.blaisesolutions.entity.Person;
 import org.blaisesolutions.entity.Todo;
 import org.blaisesolutions.entity.User;
 import org.springframework.stereotype.Repository;
@@ -72,5 +73,13 @@ public class TodoDao {
             ex.printStackTrace();
         }
         return null;
+    }
+    @Transactional
+    public void softDelete(Todo todo) {
+        Todo r = em.find(Todo.class, todo.getId());
+        if (r != null) {
+            r.setComplete(true);
+            em.merge(r); // merge instead of remove
+        }
     }
 }

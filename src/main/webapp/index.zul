@@ -2,7 +2,6 @@
 <!-- protect page by the authentication init  -->
 
 <?init class="org.blaisesolutions.controller.AuthenticationInit"?>
-
 <zk>
 	<div height="100%">
 		<template name="layout" src="/template.zul"/>

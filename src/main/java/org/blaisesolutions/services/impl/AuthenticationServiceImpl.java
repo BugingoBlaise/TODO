@@ -51,7 +51,7 @@ public class AuthenticationServiceImpl implements AuthenticationService, Seriali
     @Override
     public boolean login(String nm, String pd) {
 
-        if (nm.equals("admin") && pd.equals("admin")) {
+        if (nm.equals("admin@gmail.com") && pd.equals("admin")) {
             UserCredential adminCredential = new UserCredential("Admin", "Admin","ADMIN");
 
             Session sess = Sessions.getCurrent();

@@ -35,5 +35,6 @@ public interface TodoListService {
 
 	String addTodo(Todo todo);
 	List<Todo> findByUser(User user);
+	String softDelete(Todo todo);
 
 }
