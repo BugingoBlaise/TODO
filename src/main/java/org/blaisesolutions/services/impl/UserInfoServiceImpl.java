@@ -1,30 +1,18 @@
-/* 
-	Description:
-		ZK Essentials
-	History:
-		Created by dennis
 
-Copyright (C) 2012 Potix Corporation. All Rights Reserved.
-*/
 package org.blaisesolutions.services.impl;
 
 
 import org.blaisesolutions.dao.UserDao;
 import org.blaisesolutions.entity.Todo;
 import org.blaisesolutions.entity.User;
+import org.blaisesolutions.services.TodoListService;
 import org.blaisesolutions.services.UserInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-import org.zkoss.zul.ListModelList;
-
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
@@ -38,11 +26,13 @@ public class UserInfoServiceImpl implements UserInfoService, Serializable {
     UserDao userDao;
     @Autowired
     PasswordEncoder passwordEncoder;
+    @Autowired
+    TodoListService todoListService;
 
     @Override
     public User findUser(String account) {
         Optional<User> userOptional = userDao.findUserByEmail(account);
-            return userOptional.orElse(null);
+        return userOptional.orElse(null);
     }
 
     @Override
@@ -64,7 +54,7 @@ public class UserInfoServiceImpl implements UserInfoService, Serializable {
         User existingUser = findUser(user.getEmail());
         if (existingUser != null) {
             throw new IllegalArgumentException("User already exists");
-        }else{
+        } else {
             user.setPassword(passwordEncoder.encode(user.getPassword()));
             return userDao.save(user);
         }
@@ -94,6 +84,38 @@ public class UserInfoServiceImpl implements UserInfoService, Serializable {
         }
         return result;
 
+    }
+
+    @Override
+    public void deleteUser(User selectedUser) {
+        try {
+
+
+        // Retrieve todos associated with the user
+        List<Todo> todosToDelete = todoListService.findByUser(selectedUser);
+
+        // Remove references to the user in todos
+        for (Todo todo : todosToDelete) {
+           String u= todo.getUser().getFullName();
+            System.out.println(u);
+            todo.setUser(null); // Or update with a different user if needed
+        }
+
+        // Delete the user
+        userDao.delete(selectedUser);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+    @Override
+    public String softDelete(User user) {
+        try{
+            userDao.softDelete(user);
+            return "Deleted successfully";
+        }catch (Exception ex){
+//            log.error("Error deleting todo: {}", ex.getMessage());
+            return "Failed to delete todo: " + ex.getMessage();
+        }
     }
 
 }

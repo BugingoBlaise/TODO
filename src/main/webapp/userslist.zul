@@ -6,18 +6,18 @@
         <separator bar="true" spacing="20px"/>
         <hlayout style="display: flex; flex-direction: row; justify-content: space-between;">
 
-                <div>
-                    <!-- Aligning the "Add New User" button to the left -->
-                    <button label="Add New User" iconSclass="z-icon-user-add"  onClick="@command('openProfilePage')"/>
-                </div>
+            <div>
+                <!-- Aligning the "Add New User" button to the left -->
+                <button label="Add New User" iconSclass="z-icon-user-add" onClick="@command('openProfilePage')"/>
+            </div>
 
-                <div>
-                    Keyword:
-                    <textbox id="keywordBox" value="@save(vm.keyword)"/>
-                    <button id="searchButton" label="Search" image="/img/search.png"
-                            onClick="@command('search')"
-                    />
-                </div>
+            <div>
+                Keyword:
+                <textbox id="keywordBox" value="@save(vm.keyword)"/>
+                <button id="searchButton" label="Search" image="/img/search.png"
+                        onClick="@command('search')"
+                />
+            </div>
 
 
         </hlayout>
@@ -37,7 +37,12 @@
                     <listcell label="@init(each.email)"></listcell>
                     <listcell label="@init(each.account)"></listcell>
                     <listcell>
-                        <button iconSclass="z-icon-info" onClick="@command('setSelectedUser')"/>
+                        <button iconSclass="z-icon-info"
+                                onClick="@command('setSelectedUser')"/>
+                    </listcell>
+                    <listcell>
+                        <button label="Delete" width="70px"
+                                onClick="@command('confirmDelete',user=each)"/>
                     </listcell>
                 </listitem>
             </template>

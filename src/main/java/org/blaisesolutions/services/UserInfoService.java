@@ -9,12 +9,9 @@ Copyright (C) 2012 Potix Corporation. All Rights Reserved.
 package org.blaisesolutions.services;
 
 
-import org.blaisesolutions.entity.Todo;
 import org.blaisesolutions.entity.User;
-import org.jboss.logging.Param;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface UserInfoService {
 
@@ -30,4 +27,6 @@ public interface UserInfoService {
 
 	List<User> searchUserByName(String keyword);
 
+    void deleteUser(User selectedUser);
+	 String softDelete(User user);
 }

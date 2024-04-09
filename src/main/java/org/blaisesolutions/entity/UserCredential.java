@@ -24,7 +24,7 @@ public class UserCredential implements Serializable {
         this.account = "anonymous";
         this.name = "Anonymous";
         roles.add("anonymous");
-//        roles.add("USER");
+
     }
 
     public boolean isAnonymous() {

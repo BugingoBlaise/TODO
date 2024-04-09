@@ -23,7 +23,6 @@ import java.util.Map;
 //@VariableResolver(va)
 @VariableResolver(org.zkoss.zkplus.spring.DelegatingVariableResolver.class)
 public class AuthenticationInit implements Initiator {
-
 	//services
 	@WireVariable
 	AuthenticationService authService;

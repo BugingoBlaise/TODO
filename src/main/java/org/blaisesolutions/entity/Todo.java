@@ -16,8 +16,6 @@ import lombok.ToString;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
-import java.util.Objects;
 
 /**
  * Todo entity
@@ -35,12 +33,7 @@ public class Todo implements Serializable, Cloneable {
     private Priority priority;
     private Date date;
     private String description;
-//    private boolean isdeleted = false;
-
-
-    //    @OneToMany(mappedBy = "todo",fetch = FetchType.EAGER)
-//    private List<User> users;
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = {CascadeType.DETACH, CascadeType.REFRESH})
     @JoinColumn(name = "userss")
     private User user;
 

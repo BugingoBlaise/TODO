@@ -13,6 +13,7 @@ import lombok.Setter;
 import org.blaisesolutions.entity.Person;
 import org.blaisesolutions.entity.Priority;
 import org.blaisesolutions.entity.Todo;
+import org.blaisesolutions.entity.User;
 import org.blaisesolutions.services.TodoListService;
 import org.zkoss.bind.BindUtils;
 import org.zkoss.bind.ValidationContext;
@@ -23,11 +24,11 @@ import org.zkoss.bind.annotation.Init;
 import org.zkoss.bind.annotation.NotifyChange;
 import org.zkoss.bind.validator.AbstractValidator;
 import org.zkoss.lang.Strings;
+import org.zkoss.zhtml.Messagebox;
 import org.zkoss.zk.ui.select.annotation.VariableResolver;
 import org.zkoss.zk.ui.select.annotation.WireVariable;
 import org.zkoss.zk.ui.util.Clients;
 import org.zkoss.zul.ListModelList;
-import org.zkoss.zul.Messagebox;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -35,6 +36,8 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import static org.zkoss.zk.ui.util.Clients.alert;
 
 @Getter
 @Setter
@@ -93,16 +96,12 @@ public void addTodo() {
     public void updateTodo() {
         if (selectedTodo != null) {
             String mes = todoListService.updateTodo(selectedTodo);
-
              List<Todo> updatedTodoList = todoListService.getTodoList();
-
              List<Todo> activeTodos = updatedTodoList.stream()
                     .filter(t -> !t.isComplete())
                     .collect(Collectors.toList());
-
              todoListModel.clear();
             todoListModel.addAll(activeTodos);
-
             Clients.showNotification(mes);
         }
     }
@@ -111,22 +110,31 @@ public void addTodo() {
    @Command
    @NotifyChange({"selectedTodo", "todoListModel"})
    public void deleteTodo(@BindingParam("todo") Todo todo) {
-        String me = todoListService.softDelete(todo);
 
-        List<Todo> updatedTodoList = todoListService.getTodoList();
+        org.zkoss.zhtml.Messagebox.show("Do you want to delete Todo?", "Confirmation Delete",
+                org.zkoss.zhtml.Messagebox.YES | org.zkoss.zhtml.Messagebox.CANCEL, org.zkoss.zhtml.Messagebox.QUESTION, event -> {
+                    if (event.getName().equals(Messagebox.ON_YES)) {
+//                deleteUser(newUser);
+                        if (todo != null) {
+                            String me = todoListService.softDelete(todo);
 
-        List<Todo> activeTodos = updatedTodoList.stream()
-               .filter(t -> !t.isComplete())
-               .collect(Collectors.toList());
+                            List<Todo> updatedTodoList = todoListService.getTodoList();
+                            List<Todo> activeTodos = updatedTodoList.stream()
+                                    .filter(t -> !t.isComplete())
+                                    .collect(Collectors.toList());
+                            todoListModel.clear();
+                            todoListModel.addAll(activeTodos);
+                            Clients.showNotification(me);
+                            alert(me);
+                        }
+                    }else{
+                        alert("Delete cancelled");
+                    }
+                });
 
-        todoListModel.clear();
-       todoListModel.addAll(activeTodos);
-       Clients.showNotification(me);
 
-        if (todo.equals(selectedTodo)) {
-           selectedTodo = null;
-           BindUtils.postNotifyChange(null, null, this, "selectedTodo");
-       }
+
+
    }
 
     @Command

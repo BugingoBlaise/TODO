@@ -69,13 +69,7 @@ public class UserDao  {
             log.error("error at "+exception.getLocalizedMessage());
         }
      }
-    @Transactional
-    public void delete(User user) {
-        User r = findById(user.getId());
-        if(r != null) {
-            em.remove(r);
-        }
-    }
+
 
     @Transactional
     public boolean authenticate(String email, String password) {
@@ -100,5 +94,24 @@ public class UserDao  {
     @Transactional
     public Optional<User> getUserById(User user) {
         return Optional.ofNullable(em.find(User.class, user.getId()));
+    }
+    @Transactional
+    public void delete(User user) {
+        User t = get(Math.toIntExact(user.getId()));
+        if (t != null) {
+            em.remove(t);
+        }
+    }
+    @Transactional(readOnly = true)
+    public User get(Integer id) {
+        return em.find(User.class, id);
+    }
+    @Transactional
+    public void softDelete(User user) {
+        User r = em.find(User.class, user.getId());
+        if (r != null) {
+            r.setIsdeleted(true);
+            em.merge(r); // merge instead of remove
+        }
     }
 }

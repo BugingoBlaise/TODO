@@ -1,6 +1,5 @@
 <?link rel="stylesheet" type="text/css" href="/style.css"?>
 <!-- protect page by the authentication init  -->
-
 <?init class="org.blaisesolutions.controller.AuthenticationInit"?>
 <zk>
 	<div height="100%">

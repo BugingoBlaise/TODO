@@ -44,7 +44,7 @@ public class User implements Serializable, Cloneable {
     private String country;
     private String bio;
     private String role;
-
+    private boolean isdeleted = false;
 
 
 //    @ManyToOne
@@ -53,7 +53,8 @@ public class User implements Serializable, Cloneable {
 
     public User() {
     }
-    public User(int id, String account, String fullName, String password, String email, Date birthday, String country, String bio, String role) {
+
+    public User(int id, String account, String fullName, String password, String email, Date birthday, String country, String bio, String role, boolean isdeleted) {
         this.id = id;
         this.account = account;
         this.fullName = fullName;
@@ -63,6 +64,7 @@ public class User implements Serializable, Cloneable {
         this.country = country;
         this.bio = bio;
         this.role = role;
+        this.isdeleted = isdeleted;
 //        this.todo=todo;
     }
-   }
+}
