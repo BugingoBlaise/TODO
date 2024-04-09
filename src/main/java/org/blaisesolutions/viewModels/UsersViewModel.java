@@ -112,6 +112,8 @@ public class UsersViewModel {
                     users.clear();
                     users.addAll(activeUsers);
                     alert("Deleted successfully");
+                }else{
+                    alert("User is null");
                 }
 
             }else{
