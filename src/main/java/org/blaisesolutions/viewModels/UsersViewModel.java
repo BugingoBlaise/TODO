@@ -50,9 +50,9 @@ public class UsersViewModel {
 
     @Init
     public void init() {
-        this.users = userInfoService.findAll();
+        this.users = userInfoService.listActiveUsers();
         this.allTodos = this.todoListService.getTodoList();
-        this.filterUsers();
+//        this.filterUsers();
     }
 
     @Command("search")
@@ -95,33 +95,26 @@ public class UsersViewModel {
 
 
     @Command("confirmDelete")
-    @NotifyChange("users")
-    public void confirmDelete(@BindingParam("user") User userToDelete){
+    @NotifyChange({"users"})
+    public void confirmDelete(@BindingParam("user") User userToDelete) {
         Messagebox.show("Do you want to delete user?", "Confirmation Delete",
                 Messagebox.YES | Messagebox.CANCEL, Messagebox.QUESTION, event -> {
-            if (event.getName().equals(Messagebox.ON_YES)) {
-//                deleteUser(newUser);
-                if (userToDelete != null) {
-                    System.out.println("---method reached----");
-                    userInfoService.softDelete(userToDelete);
-                    List<User>updatedUsers=userInfoService.findAll();
-                    List<User>activeUsers=updatedUsers
-                            .stream()
-                            .filter(t->!t.isIsdeleted())
-                            .collect(Collectors.toList());
-                    users.clear();
-                    users.addAll(activeUsers);
-                    alert("Deleted successfully");
-                }else{
-                    alert("User is null");
-                }
+                    if (event.getName().equals(Messagebox.ON_YES)) {
+                        if (userToDelete != null) {
+                            userInfoService.softDelete(userToDelete);
+                            users.remove(userToDelete);// Remove the user from the list
+                            users.clear();
 
-            }else{
-                alert("Delete cancelled");
-            }
-        });
-
+                            alert("Deleted successfully");
+                        } else {
+                            alert("User is null");
+                        }
+                    } else {
+                        alert("Delete cancelled");
+                    }
+                });
     }
+
     public void filterUsers() {
         ListModelList<User> userslist = new ListModelList<>();
         for (User user : this.users) {

@@ -29,4 +29,5 @@ public interface UserInfoService {
 
     void deleteUser(User selectedUser);
 	 String softDelete(User user);
+	 List<User>listActiveUsers();
 }

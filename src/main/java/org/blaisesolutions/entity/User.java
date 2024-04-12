@@ -26,6 +26,7 @@ import java.util.List;
 //        @NamedQuery(name = "Account.findAccByLike", query = "select ac from Account ac where ac.versionId like :key")
 
 @NamedQuery(name = "User.searchUserByName", query = "SELECT u FROM User u WHERE u.fullName LIKE :kw")
+@NamedQuery(name = "User.listActiveUsers", query = "SELECT u FROM User u WHERE u.isdeleted = false")
 @Getter
 @Setter
 @Entity

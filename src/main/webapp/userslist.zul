@@ -33,13 +33,9 @@
             </listhead>
             <template name="model">
                 <listitem>
-                    <listcell label="@init(each.fullName)"></listcell>
-                    <listcell label="@init(each.email)"></listcell>
-                    <listcell label="@init(each.account)"></listcell>
-                    <listcell>
-                        <button iconSclass="z-icon-info"
-                                onClick="@command('setSelectedUser')"/>
-                    </listcell>
+                    <listcell label="@init(each.fullName)"/>
+                    <listcell label="@init(each.email)"/>
+                    <listcell label="@init(each.account)"/>
                     <listcell>
                         <button label="Delete" width="70px"
                                 onClick="@command('confirmDelete',user=each)"/>

@@ -92,6 +92,11 @@ public class UserDao  {
                 .getResultList();
     }
     @Transactional
+    public List<User> listActiveUsers() {
+        return em.createNamedQuery("User.listActiveUsers", User.class)
+                .getResultList();
+    }
+    @Transactional
     public Optional<User> getUserById(User user) {
         return Optional.ofNullable(em.find(User.class, user.getId()));
     }

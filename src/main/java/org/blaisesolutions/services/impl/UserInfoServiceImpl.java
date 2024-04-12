@@ -118,4 +118,9 @@ public class UserInfoServiceImpl implements UserInfoService, Serializable {
         }
     }
 
+    @Override
+    public List<User> listActiveUsers() {
+        return userDao.listActiveUsers();
+    }
+
 }

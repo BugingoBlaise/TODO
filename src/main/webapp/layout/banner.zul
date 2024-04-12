@@ -1,5 +1,5 @@
 <div hflex="1" vflex="1" sclass="banner">
-	<hbox hflex="1" vflex="1" align="center">
+	<hbox  align="center">
 		<a href="http://www.zkoss.org/">
 			<image src="/imgs/todo.jpg" width="60px" height="60px" />
 		</a>
@@ -8,7 +8,7 @@
 		</div>
 
 		<hbox apply="org.blaisesolutions.controller.LogoutController"
-			  hflex="1" vflex="1" pack="end" align="center" >
+			  hflex="1" vflex="1" pack="end"  >
 			<label value="${sessionScope.userCredential.name}" if="${not sessionScope.userCredential.anonymous}"/>
 			<label id="logout" value="Logout" if="${not sessionScope.userCredential.anonymous}" sclass="logout"/>
 		</hbox>
